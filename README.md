@@ -20,7 +20,7 @@ Add a new “action” that shows a list of dog breeds of the type “terrier”
 
 ## Exercise 4
 
-Replace the link to ?Action = members with a button. The button should trigger loading of the result via ajax through WGR.example in JS. It should therefore be a class on the button that the javascript in scripts.js has an onclick listener against. See https://wgrsecure.se/docs/coding-style/#header7 for tips.
+Replace the link to `?action=members` with a button. The button should trigger loading of the result via ajax through WGR.example in JS. It should therefore be a class on the button that the javascript in scripts.js has an onclick listener against. See https://wgrsecure.se/docs/coding-style/#header7 for tips.
 
 ## Exercise 5
 
