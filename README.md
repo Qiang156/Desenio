@@ -1,38 +1,51 @@
-## Uppgifter
+# Interview exercises
 
-1.  Om sidan laddas med ?action=members så visas en lista medlemmar. Nu vill vi visa varje medlems parentID bredvid namnet. Dels behöver alltså parentID vara med i SQL-SELECT samt att det skrivs ut i viewfilen "startpage.php" bredvid namnet på varje medlem.
+## Exercise 1
 
-2.  Medlemmarna har alltså parametern parentID som visar vilken annan medlem som är förälder. Lägg till en nytt värde för parametern "action" i WGR_ExamplePageController (t.ex. ?action=members-parents) som aktiverar en laddning av medlemmarnas namn tillsammans med deras förfäder (rekursivt). Visa sedan resultatet i viewfilen "startpage.php".  
-    Exempel på resultat:  
-    Andersson  
-    Bengtsson (Andersson)  
-    Claesson (Bengtsson, Andersson)  
-    Davidsson (Claesson, Bengtsson, Andersson)
+If the page is loaded with `?action=members`, a list of members is displayed. Now we want to show each member’s parentID next to the name. In other words, parentID needs to be included in SQL-SELECT and that it is printed in the view file “startpage.php” next to the name of each member.
 
-3.  Lägg till en ny "action" som visar en lista med hundraser av typen "terrier" från detta API:  https://dog.ceo/dog-api/ 
-    Laddningen av data ska ske genom PHP och curl (ej Guzzle eller liknande).
+## Exercise 2
 
-4.  Byt ut länken till ?action=members mot en knapp. Knappen ska trigga laddning av resultatet via ajax genom WGR.example i JS. Det ska alltså vara en class på knappen som javascriptet i scripts.js har en onclick-lyssnare mot. Se https://wgrsecure.se/docs/coding-style/#header7 för tips.
+The members thus have the parameter parentID which shows which other member is the parent. Add a new value for the “action” parameter in the WGR_ExamplePageController (eg `?action=members-parents`) that activates a load of members’ names along with their ancestors (recursive). Then display the result in the viewfile “startpage.php”.
 
-5.  Tänk dig att det finns tabeller i databasen som heter clients, orders och orderItems.
-    Skapa en ny class med en funktion som hämtar en lista med unika kundnamn där kunderna har köpt artikelnummer X inom de senaste Y dagarna.
+**Examples of results:**  
+Andersson  
+Bengtsson (Andersson)  
+Claesson (Bengtsson, Andersson)  
+Davidsson (Claesson, Bengtsson, Andersson)
 
-    Info om kolumnerna i databasen (alla har egna index):
+## Exercise 3
 
-    ```
-    orderItems.orderID = orders.id
-    orders.clientID =  clients.id
-    orders.orderTime = DATETIME
-    clients.name = varchar
-    orderItems.articleNumber = varchar
-    ```
+Add a new “action” that shows a list of dog breeds of the type “terrier” from this API: https://dog.ceo/dog-api/ The loading of data should be done through PHP and curl (not Guzzle or similar).
 
-    Använd dbFetchAllPrepared för detta (du ska inte skapa någon riktig koppling mot databasen eller få ut något riktigt resultat, vi vill bara se funktionen du skriver samt SQL-satsen).
+## Exercise 4
 
-6.  Skriv en funktion som returnerar antalet ordrar per datum, mellan två angivna datum. Resultatet ska även innehålla datum där det finns 0 ordrar.
+Replace the link to ?Action = members with a button. The button should trigger loading of the result via ajax through WGR.example in JS. It should therefore be a class on the button that the javascript in scripts.js has an onclick listener against. See https://wgrsecure.se/docs/coding-style/#header7 for tips.
 
-När du är nöjd skickar du över koden i en zip-fil till din kontaktperson.
+## Exercise 5
 
-Lycka till!!
+Imagine that there are tables in the database called clients, orders and orderItems. Create a new class with a function that retrieves a list of unique customer names where customers have purchased item number X within the last Y days.
 
-PS. Om du vill fördjupa dig i Wikinggruppens syntaxregler för PHP och Javascript så finns de beskrivna här, men det är inget krav i arbetsprovet: https://wgrsecure.se/docs/coding-style/
+Info about the columns in the database (all have their own indexes):
+
+```
+orderItems.orderID = orders.id
+orders.clientID = clients.id
+orders.orderTime = DATETIME
+clients.name = varchar
+orderItems.articleNumber = varchar
+```
+
+Use dbFetchAllPrepared for this (you should not create a real connection to the database or get a real result, we just want to see the function you write and the SQL statement).
+
+## Exercise 6
+
+Enter a function that returns the number of orders per date, between two specified dates. The result must also contain dates where there are 0 orders.
+
+---
+
+When you are satisfied, send the code in a zip file to your contact person.
+
+**Good luck!!**
+
+PS. If you want to immerse yourself in the Wikinggruppens syntax rules for PHP and Javascript, they are described here, but there is no requirement in the work test: https://wgrsecure.se/docs/coding-style/
