@@ -16,7 +16,7 @@
 			// Loop names of members
 			foreach ($pageModel->members as $member) {
 				?>
-				<?= $member->name ?><br>
+				<?= $member->name ?> ( <?= $member->parentID ?> )<br>
 				<?php
 			}
 		}

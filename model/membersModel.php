@@ -22,10 +22,10 @@ class WGR_MembersModel
 	 * @param string $type
 	 * @return array
 	 */
-	public function getMembers($type)
-	{
+	public function getMembers(string $type): array
+    {
 		return $this->model->dbFetchAllPrepared(
-			'SELECT id, name
+			'SELECT id, parentID, name 
 			FROM members
 			WHERE type = ?', array($type), PDO::FETCH_OBJ);
 	}
