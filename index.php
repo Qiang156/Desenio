@@ -3,6 +3,7 @@
 // Normally this would be done with autoload and composer
 include 'model/baseModel.php';
 include 'model/membersModel.php';
+include 'model/dogsModel.php';
 
 class WGR_ExamplePageModel extends WGR_BaseModel
 {
@@ -10,6 +11,11 @@ class WGR_ExamplePageModel extends WGR_BaseModel
 	 * @var array
 	 */
 	public $members;
+
+    /**
+     * @var array
+     */
+    public $breeds;
 
 	/**
 	 * Loads list of members
@@ -27,6 +33,15 @@ class WGR_ExamplePageModel extends WGR_BaseModel
     {
         $membersModel = new WGR_MembersModel($this);
         $this->members = $membersModel->getMembersWithParents('foo');
+    }
+
+    /**
+     * load breeds list from API
+     */
+    public function loadBreeds()
+    {
+        $dogsModel = new WGR_DogsModel($this);
+        $this->breeds = $dogsModel->getBreeds('terrier');
     }
 }
 
@@ -57,12 +72,15 @@ class WGR_ExamplePageController
 		$pageModel = new WGR_ExamplePageModel();
 
 		$action = $_GET['action'] ?? null;
-
+        
 		if ($action === 'members') {
 			$pageModel->loadMembers();
 		}
         elseif ($action === 'members-parents') {
             $pageModel->loadMembersWithParents();
+        }
+        elseif ($action === 'breeds') {
+            $pageModel->loadBreeds();
         }
 
 		$pageView = new WGR_ExamplePageView();
