@@ -37,7 +37,7 @@
         else {
 			?>
 			<a class="btn" href="?action=members">Members</a><br />
-            <button type="button" class="btn">Members</button><br />
+            <button type="button" class="btn">Members-ajax</button><br />
             <a href="?action=members-parents">Members-Parents</a><br />
             <a href="?action=breeds">Dog-Breeds</a><br />
 			<?php
