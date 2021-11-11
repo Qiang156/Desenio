@@ -17,10 +17,13 @@
 			foreach ($pageModel->members as $member) {
                 echo $member->name;
                 if ( isset($member->parent) ) {
-                    echo $member->parent ? '('.join($member->parent,', ').')':'','<br />';
+                    echo $member->parent ? '('.join($member->parent,', ').')':'';
                 } else {
-				    echo '(',$member->parentID,')','<br />';
+				    echo '(',$member->parentID,')';
                 }
+                ?>
+                <br />
+                <?php
 			}
 		}
 
@@ -33,7 +36,8 @@
 
         else {
 			?>
-			<a href="?action=members">Members</a><br />
+			<a class="btn" href="?action=members">Members</a><br />
+            <button type="button" class="btn">Members</button><br />
             <a href="?action=members-parents">Members-Parents</a><br />
             <a href="?action=breeds">Dog-Breeds</a><br />
 			<?php

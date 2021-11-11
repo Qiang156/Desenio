@@ -72,15 +72,24 @@ class WGR_ExamplePageController
 		$pageModel = new WGR_ExamplePageModel();
 
 		$action = $_GET['action'] ?? null;
-        
-		if ($action === 'members') {
-			$pageModel->loadMembers();
-		}
-        elseif ($action === 'members-parents') {
-            $pageModel->loadMembersWithParents();
+
+        // this is for ajax request
+        if ( $action === 'members-ajax' ) {
+            $pageModel->loadMembers();
+            echo json_encode($pageModel->members);
+            exit();
         }
-        elseif ($action === 'breeds') {
-            $pageModel->loadBreeds();
+
+        switch ($action) {
+            case 'members':
+                $pageModel->loadMembers();
+                break;
+            case 'members-parents':
+                $pageModel->loadMembersWithParents();
+                break;
+            case 'breeds':
+                $pageModel->loadBreeds();
+                break;
         }
 
 		$pageView = new WGR_ExamplePageView();
