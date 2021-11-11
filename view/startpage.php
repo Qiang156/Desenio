@@ -15,14 +15,23 @@
 		if ($pageModel->members) {
 			// Loop names of members
 			foreach ($pageModel->members as $member) {
+                if ( isset($member->parent) ) {
+                ?>
+                    <?= $member->name ?>
+                    <?= $member->parent ? '(':'' ?><?= join($member->parent,', ') ?><?= $member->parent ? ')':'' ?>
+                    <br>
+                <?php
+                } else {
 				?>
-				<?= $member->name ?> ( <?= $member->parentID ?> )<br>
+				    <?= $member->name ?> (<?= $member->parentID ?>)
+                    <br>
 				<?php
+                }
 			}
-		}
-		else {
+		} else {
 			?>
 			<a href="?action=members">Members</a>
+            <a href="?action=members-parents">Members-Parents</a>
 			<?php
 		}
 

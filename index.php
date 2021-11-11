@@ -19,6 +19,15 @@ class WGR_ExamplePageModel extends WGR_BaseModel
 		$membersModel = new WGR_MembersModel($this);
 		$this->members = $membersModel->getMembers('foo');
 	}
+
+    /**
+     * loads list of members with Parents
+     */
+    public function loadMembersWithParents()
+    {
+        $membersModel = new WGR_MembersModel($this);
+        $this->members = $membersModel->getMembersWithParents('foo');
+    }
 }
 
 class WGR_ExamplePageView
@@ -52,6 +61,9 @@ class WGR_ExamplePageController
 		if ($action === 'members') {
 			$pageModel->loadMembers();
 		}
+        elseif ($action === 'members-parents') {
+            $pageModel->loadMembersWithParents();
+        }
 
 		$pageView = new WGR_ExamplePageView();
 		$pageView->renderResponseHeaders();
