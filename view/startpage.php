@@ -17,7 +17,7 @@
 			foreach ($pageModel->members as $member) {
                 echo $member->name;
                 if ( isset($member->parent) ) {
-                    echo $member->parent ? '('.join($member->parent,', ').')':'';
+                    echo $member->parent ? '('.join($member->parent,', ').')' : '';
                 } else {
 				    echo '(',$member->parentID,')';
                 }

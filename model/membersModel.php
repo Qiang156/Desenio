@@ -56,18 +56,19 @@ class WGR_MembersModel
                 $tmp = $tmp['parent'] ?? [];
             }
         }
-        unset($data,$tmp);
+        unset($data, $tmp);
         return $list;
     }
 
     /**
+     *
      * @param $data
      * @param $obj
      * @return array
      */
     private function getParents($data, $obj): array
     {
-        if ($obj->parentID !== 0) {
+        if ( $obj->parentID !== 0 ) {
             $tree = [
                 'name' => $obj->name,
                 'parent' => $this->getParents($data, $data[$obj->parentID])
@@ -77,7 +78,5 @@ class WGR_MembersModel
         }
         return $tree;
     }
-
-
 
 }

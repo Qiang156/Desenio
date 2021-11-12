@@ -44,7 +44,7 @@ final class modelTest extends TestCase
         $this->assertContains('Andersson',$data[1]->parent);
         $this->assertContains('Bengtsson',$data[2]->parent);
         $this->assertContains('Claesson',$data[3]->parent);
-        foreach($data as $key => $val) {
+        foreach ( $data as $key => $val ) {
             $this->assertCount($key, $val->parent);
         }
     }

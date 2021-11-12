@@ -53,6 +53,7 @@ class WGR_OrdersModel
     public function getOrderCountBetweenTwoDays($startDate,$endDate): array
     {
         $start = strtotime($startDate);
+        // The last sec of a day should be the next day.
         $end = strtotime($endDate) + 86400 - 1;
         $data = $this->model->dbFetchAllPrepared(
             "SELECT DATE(orderTime) as date 
@@ -63,11 +64,11 @@ class WGR_OrdersModel
         );
 
         $result = [];
-        for($time = $start; $time <= $end; $time += 86400) {
+        for ( $time = $start; $time <= $end; $time += 86400 ) {
             $date = date('Y-m-d', $time);
             $result[$date] = 0;
-            foreach($data as $row) {
-                if($row->date === $date) $result[$date] ++;
+            foreach ( $data as $row ) {
+                if ( $row->date === $date ) $result[$date] ++;
             }
         }
         return $result;
