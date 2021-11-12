@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * Order model/service
  */
@@ -40,4 +41,35 @@ class WGR_OrdersModel
         );
 	}
 
+    /**
+     * Returns the number of orders per date,
+     * between two specified dates.
+     * The result must also contain dates where there are 0 orders.
+     *
+     * @param $startDate
+     * @param $endDate
+     * @return array
+     */
+    public function getOrderCountBetweenTwoDays($startDate,$endDate): array
+    {
+        $start = strtotime($startDate);
+        $end = strtotime($endDate) + 86400 - 1;
+        $data = $this->model->dbFetchAllPrepared(
+            "SELECT DATE(orderTime) as date 
+                FROM orders 
+                WHERE UNIX_TIMESTAMP(orderTime) BETWEEN ? AND ?
+                ORDER BY date ASC",
+            array($start, $end), PDO::FETCH_OBJ
+        );
+
+        $result = [];
+        for($time = $start; $time <= $end; $time += 86400) {
+            $date = date('Y-m-d', $time);
+            $result[$date] = 0;
+            foreach($data as $row) {
+                if($row->date === $date) $result[$date] ++;
+            }
+        }
+        return $result;
+    }
 }

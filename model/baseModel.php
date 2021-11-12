@@ -15,10 +15,10 @@ class WGR_BaseModel
 	public function dbFetchAllPrepared(string $sql, array $params, int $fetchMode): array
     {
 		return json_decode(json_encode(array(
-			array('id' => 1, 'parentID' => 0, 'name' => 'Andersson'),
-			array('id' => 2, 'parentID' => 1, 'name' => 'Bengtsson'),
-			array('id' => 3, 'parentID' => 2, 'name' => 'Claesson'),
-			array('id' => 4, 'parentID' => 3, 'name' => 'Davidsson'),
+			array('id' => 1, 'parentID' => 0, 'date'=>'2021-11-07', 'name' => 'Andersson'),
+			array('id' => 2, 'parentID' => 1, 'date'=>'2021-11-09', 'name' => 'Bengtsson'),
+			array('id' => 3, 'parentID' => 2, 'date'=>'2021-11-09', 'name' => 'Claesson'),
+			array('id' => 4, 'parentID' => 3, 'date'=>'2021-11-10', 'name' => 'Davidsson'),
 		)));
 	}
 
