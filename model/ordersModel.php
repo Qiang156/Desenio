@@ -56,9 +56,10 @@ class WGR_OrdersModel
         // The last sec of a day should be the next day.
         $end = strtotime($endDate) + 86400 - 1;
         $data = $this->model->dbFetchAllPrepared(
-            "SELECT DATE(orderTime) as date 
+            "SELECT DATE(orderTime) as date, COUNT(orderTime) as number
                 FROM orders 
                 WHERE UNIX_TIMESTAMP(orderTime) BETWEEN ? AND ?
+                GROUP BY date 
                 ORDER BY date ASC",
             array($start, $end), PDO::FETCH_OBJ
         );
@@ -67,10 +68,11 @@ class WGR_OrdersModel
         for ( $time = $start; $time <= $end; $time += 86400 ) {
             $date = date('Y-m-d', $time);
             $result[$date] = 0;
-            foreach ( $data as $row ) {
-                if ( $row->date === $date ) $result[$date] ++;
-            }
         }
+        foreach ( $data as $row ) {
+            $result[$row->date] = $row->number;
+        }
+
         return $result;
     }
 }
