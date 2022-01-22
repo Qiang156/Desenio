@@ -25,12 +25,9 @@ class WGR_DogsModel
      */
     public function getBreeds(string $breed): array
     {
-        $data = $this->model->fetchDataFromAPI("https://dog.ceo/api/breed/".$breed."/list");
-        if ( $data['status'] === 'success' ) {
-            return $data['message'];
-        } else {
-            return [];
-        }
+        $api = "https://dog.ceo/api/breed/".$breed."/list";
+        $data = $this->model->fetchDataFromAPI($api);
+        return $data['status'] === 'success' ?  $data['message'] : [];
     }
 
 
